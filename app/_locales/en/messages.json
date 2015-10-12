@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Similar",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "It is an Extension that will display a similar articles.",
+    "description": "The description of the application"
+  }
+}
