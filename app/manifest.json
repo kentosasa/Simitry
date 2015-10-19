@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "version": "0.0.6",
   "manifest_version": 2,
-  "permissions": ["tabs" ,"http://*/*", "https://*/*"],
+  "permissions": ["tabs" ,"http://*/*", "https://*/*", "<all_urls>"],
   "description": "__MSG_appDescription__",
   "icons": {
     "16": "images/icon-16.png",
@@ -11,6 +11,7 @@
   "default_locale": "en",
   "background": {
     "scripts": [
+      "scripts/jquery-2.1.4.min.js",
       "scripts/chromereload.js",
       "scripts/background.js"
     ]
@@ -34,7 +35,9 @@
         "http://*/*",
         "https://*/*"
       ],
+      "css": ["styles/main.css"],
       "js": [
+        "scripts/jquery-2.1.4.min.js",
         "scripts/contentscript.js"
       ],
       "run_at": "document_end",
