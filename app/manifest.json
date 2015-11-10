@@ -38,10 +38,12 @@
       "css": ["styles/main.css"],
       "js": [
         "scripts/jquery-2.1.4.min.js",
+        "scripts/react-0.14.0.js",
+        "scripts/react-dom-0.14.0.js",
+        "scripts/react-with-addons-0.14.0.js",
         "scripts/contentscript.js"
       ],
-      "run_at": "document_end",
-      "all_frames": false
+      "run_at": "document_end"
     }
   ]
 }

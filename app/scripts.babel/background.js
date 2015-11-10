@@ -15,7 +15,7 @@ chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
     sendResponse({message: "url送れた"});
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://b.hatena.ne.jp/entry/json/?url="+request.url, true);
+    xhr.open("GET", "http://localhost:3000/api/entries", true);
     xhr.onload = function (e) {
       chrome.tabs.getSelected(null, function(tab) {
         entries = JSON.parse(xhr.responseText);
