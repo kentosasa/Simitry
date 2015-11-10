@@ -1,7 +1,7 @@
 "use strict";
 
 var articles;
-var entry;
+var entries;
 var result = [];
 var hoge;
 
@@ -24,6 +24,7 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
     });
   };
   xhr.onerror = function (e) {
+    debugger;
     console.error(xhr.statusText);
   };
   xhr.send(null);
