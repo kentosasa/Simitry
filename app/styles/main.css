@@ -1,4 +1,5 @@
 #simility-footer {
+  z-index: 100000;
   /* Hides from IE-mac \*/ }
   #simility-footer .cf:after {
     content: ".";
@@ -19,8 +20,12 @@
     overflow: hidden;
     position: relative;
     background-size: cover;
-    background-size: contain; }
-  #simility-footer .select {
+    background-size: contain;
+    transition-delay: 0s;
+    transition-duration: 0.3s;
+    transition-property: opacity, border, color, background;
+    transition-timing-function: ease; }
+  #simility-footer .entry-select {
     border: solid 4px #ff0000;
     box-sizing: border-box; }
   #simility-footer .entry-info {
@@ -52,19 +57,20 @@
     font-size: 4px;
     max-width: 100px; }
   #simility-footer .title {
-    font-size: 10px;
+    font-size: 14px;
     padding: 4px;
     color: #fff;
     font-style: bold; }
   #simility-footer .description {
-    font-size: 7px;
+    font-size: 10px;
     padding: 4px;
     color: #666; }
   #simility-footer body {
     font-size: 16px; }
   #simility-footer a {
     color: #000;
-    text-decoration: none; }
+    text-decoration: none;
+    padding: 0px; }
   #simility-footer .entry {
     width: 200px;
     border-bottom: medium solid #F5AC0F;

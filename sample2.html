@@ -2,6 +2,11 @@
 <head>
   <title>サンプル</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://fb.me/react-0.14.0.js"></script>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 </head>
 <body>
   <div id="similar-extension-main">
@@ -22,60 +27,27 @@
     <div class="red"></div>
     <div class="black"></div>
   </div>
-  <div id="similar-extension-contents">
-    <div class="entry">
-      <a href="r.gnavi.co.jp">
-        <div class="users">
-          <span>188</span>users
-        </div>
-        <div clas="entry-contents">
-          <div class="entry-title">【田中圭一のペンと箸―漫画家の好物ー】第16話：『釣りキチ三平』矢口高雄...</div>
-          <div class="thumbnail" style="background-image: url('http://cdn-ak.b.st-hatena.com/entryimage/268838217-1444877134_l.jpg')">
-          </div>
-          <div class="entry-footer">
-            <div class="meta-data">
-              <div class="category">アニメとゲーム</div>
-              <div class="date">2015/10/15 11:45</div>
-              <ul class="tags">
-                <li class="tag">タグ</li>
-                <li class="tag">タグ</li>
-                <li class="tag">タグ</li>
-                <li class="tag">タグ</li>
-              </ul>
-            </div>
-            <div class="domain"><a href="r.gnavi.co.jp">『ぐるなび』の新着エントリー</a></div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="entry">
-      <a href="r.gnavi.co.jp">
-        <div class="users">
-          <span>188</span>users
-        </div>
-        <div clas="entry-contents">
-          <div class="entry-title">【田中圭一のペンと箸―漫画家の好物ー】第16話：『釣りキチ三平』矢口高雄...</div>
-          <div class="thumbnail" style="background-image: url('http://cdn-ak.b.st-hatena.com/entryimage/268838217-1444877134_l.jpg')">
-          </div>
-          <div class="entry-footer">
-            <div class="meta-data">
-              <div class="category">アニメとゲーム</div>
-              <div class="date">2015/10/15 11:45</div>
-              <ul class="tags">
-                <li class="tag">タグ</li>
-                <li class="tag">タグ</li>
-                <li class="tag">タグ</li>
-                <li class="tag">タグ</li>
-              </ul>
-            </div>
-            <div class="domain"><a href="r.gnavi.co.jp">『ぐるなび』の新着エントリー</a></div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
   <div class="footer">
-    <div class="footer">
+    <div id='footer-contents' class="footer-contents">
+<!--       <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+ -->
+    </div>
+<!--     <div class="entry">
       <a href="r.gnavi.co.jp">
         <div class="users">
           <span>188</span>users
@@ -100,8 +72,35 @@
         </div>
       </a>
     </div>
+ -->
   </div>
 </body>
+<script type="text/jsx">
+  var EntryBox = React.createClass({
+    render: function() {
+      var footer = [];
+      var style = {};
+      var point = 5;
+      for (var i = point - 2; i <= point + 2; i++) {
+        if (i < 0 || i > point) {
+          style.visibility = 'hidden'
+        } else {
+          style.visibility = 'visible'
+        }
+       footer.push(<div key={i} className="block1" style={style}>i</div>);
+        // footer.push(<div className="block1">a</div>);
+      };
+      debugger;
+      return (
+        {footer}
+      );
+    }
+  });
+  ReactDOM.render(
+    <EntryBox />,
+    document.getElementById('footer-contents')
+    );
+</script>
 <style type="text/css">
 body{
   font-size: 16px;
@@ -174,14 +173,15 @@ a {
 }
 #similar-extension-main {
   float: left;
-  width: 80%;
+  width: 100%;
   height: 100%;
+  margin-bottom: 120px;
   overflow-y: scroll;
 }
 #similar-extension-contents {
   float: left;
-  width: 20%;
-  height: 100%;
+  width: 100%;
+  height: 120px;
   overflow-y: scroll;
 }
 .red {
@@ -191,7 +191,31 @@ a {
 .black {
   background: #0f0f0f;
   height: 200px;
-
 }
+.footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 150px;
+}
+.footer-contents {
+  margin: auto;
+  text-align: center;
+  font-size:0;
+}
+.block1 {
+  display: inline-block;
+  background: #333;
+  height: 150px;
+  width: 150px;
+}
+.block2 {
+  display: inline-block;
+  background: #666;
+  height: 150px;
+  width: 150px;
+}
+
 </style>
 </html>
