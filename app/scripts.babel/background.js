@@ -15,7 +15,12 @@ chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
     sendResponse({message: "url送れた"});
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:3000/api/entries", true);
+    var url = "http://localhost:3000/api/entries/links";
+    var params = "url=" + encodeURIComponent(request.url) + "&text=" + encodeURIComponent(request.text) + "&title=" + encodeURIComponent(request.title);
+    // var url = "http://localhost:3000/api/entries/links?" + "url=" + encodeURIComponent(request.url) + "&text=" + encodeURIComponent(request.text).substring(0, 1000) + "&title=" + encodeURIComponent(request.title).substring(0, 300);
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+    xhr.send(params);
     xhr.onload = function (e) {
       chrome.tabs.getSelected(null, function(tab) {
         entries = JSON.parse(xhr.responseText);
@@ -29,3 +34,9 @@ chrome.extension.onRequest.addListener(
   };
   xhr.send(null);
 });
+
+function fixedEncodeURIComponent (str) {
+  return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+    return '%' + c.charCodeAt(0).toString(16);
+  });
+}
