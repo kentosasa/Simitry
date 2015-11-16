@@ -73,12 +73,6 @@ var EntryBox = React.createClass({
               { className: 'entry-meta' },
               React.createElement(
                 'span',
-                { className: 'entry-count' },
-                'Count: ',
-                val.count + ""
-              ),
-              React.createElement(
-                'span',
                 { className: 'created_at' },
                 d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate()
               )
@@ -105,11 +99,11 @@ var EntryBox = React.createClass({
     }
     if (e.keyCode == 37) {
       if (this.state.position == 0) {
-        this.setState({ position: this.state.position + this.state.data.length });
+        this.setState({ position: this.state.position + (this.state.data.length - 1) });
       } else if (this.state.position > 0) this.setState({ position: this.state.position - 1 });
     } else if (e.keyCode == 39) {
-      if (this.state.position == this.state.data.length) {
-        this.setState({ position: this.state.position - this.state.data.length });
+      if (this.state.position == this.state.data.length - 1) {
+        this.setState({ position: this.state.position - (this.state.data.length - 1) });
       } else if (this.state.position < this.state.data.length) this.setState({ position: this.state.position + 1 });
     } else if (e.keyCode == 13 && this.state.visible) {
       location.href = this.state.data[this.state.position].link;
