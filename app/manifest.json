@@ -21,13 +21,7 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "Similar",
-    "default_popup": "popup.html"
-  },
-  "options_page": "options.html",
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
+    "default_title": "パフェ"
   },
   "content_scripts": [
     {
