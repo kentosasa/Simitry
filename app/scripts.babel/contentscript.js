@@ -13,7 +13,6 @@ chrome.extension.onRequest.addListener(
     //   };
   }
 );
-
 chrome.extension.sendRequest({url: location.href, text: $('h1').text()+$('h2').text()+$('h3').text(), title: $(document).find("title").text()}, function(res){
   console.log("リクエスト");
 });
@@ -45,6 +44,7 @@ var EntryBox = React.createClass({
       if (i >= max) position = i - max;
       var val = data[position];
       var entryStyle = {
+        backgroundColor: '#000000',
         background: 'url(' + val.screenshot + ')'
       };
       var d = new Date(val.created_at);
@@ -75,8 +75,6 @@ var EntryBox = React.createClass({
     );
   },
   handleKeydown(e) {
-    console.log(this.state.position);
-    console.log(e.keyCode);
     if(e.keyCode == 40) {
       this.setState({visible: false});
     } else if(e.keyCode == 37 || e.shiftKey || e.keyCode == 39) {

@@ -44,6 +44,7 @@ var EntryBox = React.createClass({
       if (i >= max) position = i - max;
       var val = data[position];
       var entryStyle = {
+        backgroundColor: '#000000',
         background: 'url(' + val.screenshot + ')'
       };
       var d = new Date(val.created_at);
