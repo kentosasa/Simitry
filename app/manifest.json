@@ -1,8 +1,13 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "manifest_version": 2,
-  "permissions": ["tabs" ,"http://*/*", "https://*/*", "<all_urls>"],
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+  ],
   "description": "__MSG_appDescription__",
   "icons": {
     "16": "images/icon-16.png",
@@ -29,7 +34,9 @@
         "http://*/*",
         "https://*/*"
       ],
-      "css": ["styles/main.css"],
+      "css": [
+        "styles/main.css"
+      ],
       "js": [
         "scripts/jquery-2.1.4.min.js",
         "scripts/react-0.14.0.js",
