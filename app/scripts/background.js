@@ -16,9 +16,10 @@ chrome.tabs.onUpdated.addListener(function (tabId) {
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
   sendResponse({ message: "url送れた" });
   var xhr = new XMLHttpRequest();
-  var url = "http://localhost:3000/api/entries/links";
+  var url = "http://localhost:3000/home/index?";
   var params = "url=" + encodeURIComponent(request.url) + "&text=" + encodeURIComponent(request.text) + "&title=" + encodeURIComponent(request.title);
   // var url = "http://localhost:3000/api/entries/links?" + "url=" + encodeURIComponent(request.url) + "&text=" + encodeURIComponent(request.text).substring(0, 1000) + "&title=" + encodeURIComponent(request.title).substring(0, 300);
+
   xhr.open("POST", url, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send(params);

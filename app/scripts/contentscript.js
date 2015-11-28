@@ -10,11 +10,9 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
   // for(var val of res){
   //   };
 });
-
 chrome.extension.sendRequest({ url: location.href, text: $('h1').text() + $('h2').text() + $('h3').text(), title: $(document).find("title").text() }, function (res) {
   console.log("リクエスト");
 });
-
 var EntryBox = React.createClass({
   displayName: 'EntryBox',
 
@@ -45,13 +43,13 @@ var EntryBox = React.createClass({
       var val = data[position];
       var entryStyle = {
         backgroundColor: '#000000',
-        background: 'url(' + val.screenshot + ')'
+        background: 'url(' + val.image_url + ')'
       };
-      var d = new Date(val.created_at);
+      var d = new Date(val.original_posted_at);
       if (this.state.visible) {
         footer.push(React.createElement(
           'a',
-          { key: position, href: val.link, className: this.state.position === position ? 'entry-box entry-select' : 'entry-box', style: entryStyle },
+          { key: position, href: val.url, className: this.state.position === position ? 'entry-box entry-select' : 'entry-box', style: entryStyle },
           React.createElement(
             'div',
             { className: 'entry-info' },
@@ -66,12 +64,17 @@ var EntryBox = React.createClass({
               React.createElement(
                 'div',
                 { className: 'description' },
-                val.description
+                val.desc
               )
             ),
             React.createElement(
               'div',
               { className: 'entry-meta' },
+              React.createElement(
+                'span',
+                { className: 'created_at' },
+                val.keyword
+              ),
               React.createElement(
                 'span',
                 { className: 'created_at' },
@@ -91,8 +94,6 @@ var EntryBox = React.createClass({
     );
   },
   handleKeydown: function handleKeydown(e) {
-    console.log(this.state.position);
-    console.log(e.keyCode);
     if (e.keyCode == 40) {
       this.setState({ visible: false });
     } else if (e.keyCode == 37 || e.shiftKey || e.keyCode == 39) {
@@ -107,7 +108,7 @@ var EntryBox = React.createClass({
         this.setState({ position: this.state.position - (this.state.data.length - 1) });
       } else if (this.state.position < this.state.data.length) this.setState({ position: this.state.position + 1 });
     } else if (e.keyCode == 13 && this.state.visible) {
-      location.href = this.state.data[this.state.position].link;
+      location.href = this.state.data[this.state.position].url;
     };
   }
 });

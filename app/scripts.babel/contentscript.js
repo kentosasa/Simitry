@@ -16,7 +16,6 @@ chrome.extension.onRequest.addListener(
 chrome.extension.sendRequest({url: location.href, text: $('h1').text()+$('h2').text()+$('h3').text(), title: $(document).find("title").text()}, function(res){
   console.log("リクエスト");
 });
-
 var EntryBox = React.createClass({
   getInitialState() {
     return {
@@ -45,18 +44,19 @@ var EntryBox = React.createClass({
       var val = data[position];
       var entryStyle = {
         backgroundColor: '#000000',
-        background: 'url(' + val.screenshot + ')'
+        background: 'url(' + val.image_url + ')'
       };
-      var d = new Date(val.created_at);
+      var d = new Date(val.original_posted_at);
       if(this.state.visible){
         footer.push(
-          <a key={position} href={val.link} className={this.state.position === position ? 'entry-box entry-select' : 'entry-box'} style={entryStyle}>
+          <a key={position} href={val.url} className={this.state.position === position ? 'entry-box entry-select' : 'entry-box'} style={entryStyle}>
             <div className="entry-info">
               <div className="entry-contents">
                 <div className="title">{val.title}</div>
-                <div className="description">{val.description}</div>
+                <div className="description">{val.desc}</div>
               </div>
               <div className="entry-meta">
+                <span className="created_at">{val.keyword}</span>
                 <span className="created_at">{d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate()}</span>
               </div>
             </div>
@@ -87,7 +87,7 @@ var EntryBox = React.createClass({
       if(this.state.position == this.state.data.length-1) { this.setState({position: this.state.position - (this.state.data.length-1)}); }
       else if (this.state.position < this.state.data.length) this.setState({position: this.state.position + 1});
     } else if (e.keyCode == 13 && this.state.visible){
-      location.href = this.state.data[this.state.position].link;
+      location.href = this.state.data[this.state.position].url;
     };
   }
 });
